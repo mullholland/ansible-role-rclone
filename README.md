@@ -87,7 +87,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 -   [fedora35](https://hub.docker.com/r/mullholland/docker-molecule-fedora35)
 -   [fedora36](https://hub.docker.com/r/mullholland/docker-molecule-fedora36)
 -   [amazonlinux](https://hub.docker.com/r/mullholland/docker-molecule-amazonlinux)
--   [amazonlinux2022](https://hub.docker.com/r/mullholland/docker-molecule-amazonlinux2022)
 -   [rockylinux8](https://hub.docker.com/r/mullholland/docker-molecule-rockylinux8)
 -   [almalinux8](https://hub.docker.com/r/mullholland/docker-molecule-almalinux8)
 -   [almalinux9](https://hub.docker.com/r/mullholland/docker-molecule-almalinux9)
