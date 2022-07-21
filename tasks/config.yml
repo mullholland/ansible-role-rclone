@@ -1,0 +1,13 @@
+---
+- name: create rclone conf directory
+  ansible.builtin.file:
+    path: "{{ rclone_conf_path }}"
+    state: directory
+    mode: "0750"
+  when: rclone_conf_path != rclone_bin_path
+
+- name: Set up rclone config
+  ansible.builtin.template:
+    src: "rclone.conf.j2"
+    dest: '{{ rclone_conf_path }}/rclone.conf'
+    mode: "0600"

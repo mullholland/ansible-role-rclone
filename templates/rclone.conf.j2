@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+{% for backend in rclone_config %}
+[{{ backend.name }}]
+  {% for option in backend.options %}
+{{ option }}
+  {% endfor %}
+{% endfor %}

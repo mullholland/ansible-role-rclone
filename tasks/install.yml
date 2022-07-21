@@ -1,0 +1,74 @@
+---
+- name: install dependencies
+  ansible.builtin.package:
+    name: "{{ rclone_dependencies }}"
+    state: present
+
+- name: Check latest rclone version
+  ansible.builtin.uri:
+    url: https://downloads.rclone.org/version.txt
+    return_content: true
+  check_mode: false
+  register: rclone_latest_version_web
+
+- name: Set variable to latest stable version number
+  ansible.builtin.set_fact:
+    rclone_latest_version: "{{ rclone_latest_version_web.content | replace ('rclone v', '', 1) | trim }}"
+
+- name: Show versions
+  ansible.builtin.debug:
+    msg:
+      - "rclone_current_version.stdout => {{ rclone_current_version.stdout | default('none') }}"
+      - "rclone_version => {{ rclone_version }}"
+      - "rclone_latest_version => {{ rclone_latest_version }}"
+
+- name: set final download url (custom)
+  ansible.builtin.set_fact:
+    rclone_download_final: "{{ rclone_download_url_latest if rclone_release == 'latest' else rclone_download_url_custom }}"
+
+- name: download rclone
+  ansible.builtin.get_url:
+    url: "{{ rclone_download_final }}"
+    dest: "/tmp/rclone.zip"
+    mode: "0644"
+  register: _rclone_download_archive
+  until: _rclone_download_archive is succeeded
+  retries: 5
+  delay: 2
+  check_mode: false
+  when:
+    # yamllint disable-line rule:line-length
+    - not rclone_is_installed.stat.exists or rclone_version not in rclone_current_version.stdout or ( rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout)
+
+- name: unpack rclone
+  ansible.builtin.unarchive:
+    src: "/tmp/rclone.zip"
+    dest: "/tmp"
+    creates: "/tmp/rclone"
+    extra_opts:
+      - "-j"  # junk paths (do not make directories)
+      - "-o"  # overwrite files WITHOUT prompting
+    remote_src: true
+  when:
+    # yamllint disable-line rule:line-length
+    - not rclone_is_installed.stat.exists or rclone_version not in rclone_current_version.stdout or ( rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout)
+
+- name: Delete existing version if it's different.
+  ansible.builtin.file:
+    path: "{{ rclone_bin_path }}/rclone"
+    state: absent
+  when:
+    # yamllint disable-line rule:line-length
+    - rclone_is_installed.stat.exists and (rclone_version not in rclone_current_version.stdout or ( rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout))
+
+- name: propagate rclone binary
+  ansible.builtin.copy:
+    src: "/tmp/rclone"
+    dest: "{{ rclone_bin_path }}/rclone"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+    remote_src: true
+  when:
+    # yamllint disable-line rule:line-length
+    - not rclone_is_installed.stat.exists or rclone_version not in rclone_current_version.stdout or ( rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout)

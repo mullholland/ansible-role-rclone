@@ -1,0 +1,22 @@
+---
+- name: Include distribution specific variables
+  ansible.builtin.include_vars: "{{ item }}"
+  with_first_found:
+    - '{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml'
+    - '{{ ansible_distribution }}.yml'
+    - '{{ ansible_os_family }}.yml'
+    - '{{ ansible_system }}.yml'
+    - 'default.yml'
+
+- name: Include architecture variables
+  ansible.builtin.include_vars: 'arch.yml'
+
+- name: preflight checks
+  include_tasks: "preflight.yml"
+
+- name: install
+  include_tasks: "install.yml"
+
+- name: config
+  include_tasks: "config.yml"
+  when: rclone_config | length > 0

@@ -1,0 +1,40 @@
+---
+# release of rclone to use.
+# 'latest'  => always gets the latest version of rclone
+# 'custom'  => lets you define a version to install
+rclone_release: "latest"
+
+# ATM only linux ist tested/supported by the role
+# rclone supports many others
+# https://rclone.org/downloads/
+rclone_os: "linux"
+
+# which version to install if not "latest"
+rclone_version: '1.59.0'
+
+# Download URL for latest/custom rclone
+# change if you need custom URLs
+rclone_download_url_latest: "https://downloads.rclone.org/rclone-current-{{ rclone_os }}-{{ rclone_arch }}.zip"
+rclone_download_url_custom: "https://downloads.rclone.org/v{{ rclone_version }}/rclone-v{{ rclone_version }}-{{ rclone_os }}-{{ rclone_arch }}.zip"
+
+# where to install
+rclone_bin_path: "/usr/local/bin"
+
+# where to store configs
+# https://rclone.org/docs/#config-config-file
+# defaults to `~/.config/rclone/rclone.conf`
+# to make it more "portable" the variable `rclone_bin_path`can be used to store the config alongside the binary
+# rclone_conf_path: "{{ rclone_bin_path }}"
+# in this case the folder will not be created/touched by ansible
+rclone_conf_path: "~/.config/rclone"
+
+# https://rclone.org/docs/
+rclone_config: []
+# rclone_config:
+#   - name: "WebDAV"
+#     options:
+#       - "type = webdav"
+#       - "url = https://nextcloud.domain.tld/remote.php/dav/files/username/"
+#       - "vendor = nextcloud"
+#       - "user = username"
+#       - "bearer_token = SuperSecretToken"
