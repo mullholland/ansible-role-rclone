@@ -12,11 +12,11 @@
   ansible.builtin.include_vars: 'arch.yml'
 
 - name: preflight checks
-  include_tasks: "preflight.yml"
+  ansible.builtin.include_tasks: "preflight.yml"
 
 - name: install
-  include_tasks: "install.yml"
+  ansible.builtin.include_tasks: "install.yml"
 
 - name: config
-  include_tasks: "config.yml"
+  ansible.builtin.include_tasks: "config.yml"
   when: rclone_config | length > 0
