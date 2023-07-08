@@ -38,7 +38,7 @@
   check_mode: false
   when:
     # yamllint disable-line rule:line-length
-    - not rclone_is_installed.stat.exists or rclone_version not in rclone_current_version.stdout or ( rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout)
+    - not rclone_is_installed.stat.exists or (rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout) or (rclone_release != "latest" and rclone_version not in rclone_current_version.stdout)
 
 - name: install | unpack rclone
   ansible.builtin.unarchive:
@@ -51,7 +51,7 @@
     remote_src: true
   when:
     # yamllint disable-line rule:line-length
-    - not rclone_is_installed.stat.exists or rclone_version not in rclone_current_version.stdout or ( rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout)
+    - not rclone_is_installed.stat.exists or (rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout) or (rclone_release != "latest" and rclone_version not in rclone_current_version.stdout)
 
 - name: install | Delete existing version if it's different.
   ansible.builtin.file:
@@ -59,7 +59,7 @@
     state: absent
   when:
     # yamllint disable-line rule:line-length
-    - rclone_is_installed.stat.exists and (rclone_version not in rclone_current_version.stdout or ( rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout))
+    - not rclone_is_installed.stat.exists or (rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout) or (rclone_release != "latest" and rclone_version not in rclone_current_version.stdout)
 
 - name: install | propagate rclone binary
   ansible.builtin.copy:
@@ -71,4 +71,4 @@
     remote_src: true
   when:
     # yamllint disable-line rule:line-length
-    - not rclone_is_installed.stat.exists or rclone_version not in rclone_current_version.stdout or ( rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout)
+    - not rclone_is_installed.stat.exists or (rclone_release == "latest" and rclone_latest_version not in rclone_current_version.stdout) or (rclone_release != "latest" and rclone_version not in rclone_current_version.stdout)
