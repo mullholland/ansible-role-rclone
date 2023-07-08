@@ -1,12 +1,12 @@
 ---
-- name: Check if already installed
+- name: preflight | Check if already installed
   ansible.builtin.stat:
     path: "{{ rclone_bin_path }}/rclone"
   changed_when: false
   check_mode: false
   register: rclone_is_installed
 
-- name: Check current version
+- name: preflight | Check current version
   ansible.builtin.command: "{{ rclone_bin_path }}/rclone --version"
   changed_when: false
   failed_when: false
