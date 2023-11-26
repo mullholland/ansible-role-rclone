@@ -1,11 +1,10 @@
-# [rclone](#rclone)
+# [Ansible role rclone](#rclone)
 
 Install and configure rclone
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/mullholland/ansible-role-rclone/workflows/Ansible%20Molecule/badge.svg)](https://github.com/mullholland/ansible-role-rclone/actions)|[![gitlab](https://gitlab.com/opensourceunicorn/ansible-role-rclone/badges/master/pipeline.svg)](https://gitlab.com/opensourceunicorn/ansible-role-rclone)|[![quality](https://img.shields.io/ansible/quality/59780)](https://galaxy.ansible.com/mullholland/rclone)|[![downloads](https://img.shields.io/ansible/role/d/59780)](https://galaxy.ansible.com/mullholland/rclone)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-rclone.svg)](https://github.com/mullholland/ansible-role-rclone/releases/)|
-
+|GitHub|Downloads|Version|
+|------|---------|-------|
+|[![github](https://github.com/mullholland/ansible-role-rclone/actions/workflows/molecule.yml/badge.svg)](https://github.com/mullholland/ansible-role-rclone/actions/workflows/molecule.yml)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/mullholland/rclone)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-rclone.svg)](https://github.com/mullholland/ansible-role-rclone/releases/)|
 ## [Example Playbook](#example-playbook)
 
 This example is taken from [`molecule/default/converge.yml`](https://github.com/mullholland/ansible-role-rclone/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
@@ -20,6 +19,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   roles:
     - role: "mullholland.rclone"
 ```
+
 
 
 ## [Role Variables](#role-variables)
@@ -87,11 +87,11 @@ This role has been tested on these [container images](https://hub.docker.com/u/m
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/mullholland/docker-centos-systemd/general)|all|
-|[Amazon](https://hub.docker.com/repository/docker/mullholland/docker-amazonlinux-systemd/general)|Candidate|
-|[Fedora](https://hub.docker.com/repository/docker/mullholland/docker-fedora-systemd/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/mullholland/docker-ubuntu-systemd/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/mullholland/docker-debian-systemd/general)|all|
+|[EL](https://hub.docker.com/r/mullholland/enterpriselinux)|all|
+|[Amazon](https://hub.docker.com/r/mullholland/amazonlinux)|Candidate|
+|[Fedora](https://hub.docker.com/r/mullholland/fedora/)|all|
+|[Ubuntu](https://hub.docker.com/r/mullholland/ubuntu)|all|
+|[Debian](https://hub.docker.com/r/mullholland/debian)|all|
 
 The minimum version of Ansible required is 2.10, tests have been done to:
 
@@ -99,7 +99,7 @@ The minimum version of Ansible required is 2.10, tests have been done to:
 - The current version.
 - The development version.
 
-If you find issues, please register them in [GitHub](https://github.com/mullholland/ansible-role-rclone/issues)
+If you find issues, please register them in [GitHub](https://github.com/mullholland/ansible-role-rclone/issues).
 
 ## [License](#license)
 
@@ -108,5 +108,3 @@ If you find issues, please register them in [GitHub](https://github.com/mullholl
 ## [Author Information](#author-information)
 
 [Mullholland](https://mullholland.net)
-
-Please consider [sponsoring me](https://github.com/sponsors/mullholland).
