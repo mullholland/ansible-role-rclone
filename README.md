@@ -4,7 +4,7 @@ Install and configure rclone
 
 |GitHub|Downloads|Version|
 |------|---------|-------|
-|[![github](https://github.com/mullholland/ansible-role-rclone/actions/workflows/molecule.yml/badge.svg)](https://github.com/mullholland/ansible-role-rclone/actions/workflows/molecule.yml)|[![downloads](https://img.shields.io/ansible/role/d/)](https://galaxy.ansible.com/mullholland/rclone)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-rclone.svg)](https://github.com/mullholland/ansible-role-rclone/releases/)|
+|[![github](https://github.com/mullholland/ansible-role-rclone/actions/workflows/molecule.yml/badge.svg)](https://github.com/mullholland/ansible-role-rclone/actions/workflows/molecule.yml)|[![downloads](https://img.shields.io/ansible/role/d/mullholland/rclone)](https://galaxy.ansible.com/mullholland/rclone)|[![Version](https://img.shields.io/github/release/mullholland/ansible-role-rclone.svg)](https://github.com/mullholland/ansible-role-rclone/releases/)|
 ## [Example Playbook](#example-playbook)
 
 This example is taken from [`molecule/default/converge.yml`](https://github.com/mullholland/ansible-role-rclone/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
