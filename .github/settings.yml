@@ -5,4 +5,4 @@
 repository:
   description: Install and configure rclone
   homepage: https://mullholland.net
-  topics: cloud, system, ansible, molecule, tox, playbook
+  topics: cloud, system, ansible, molecule, playbook

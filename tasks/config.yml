@@ -1,5 +1,5 @@
 ---
-- name: config | create rclone conf directory
+- name: config | Create rclone conf directory
   ansible.builtin.file:
     path: "{{ rclone_conf_path }}"
     state: directory

@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  become: true
   gather_facts: true
   vars:
     rclone_release: "custom"
@@ -17,4 +16,4 @@
           - "bearer_token = SuperSecretToken"
 
   roles:
-    - role: "ansible-role-rclone"
+    - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
